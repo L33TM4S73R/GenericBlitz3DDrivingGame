@@ -18,8 +18,17 @@ Graphics3D screen_width,screen_height, 32, windowed_fullscreen
 SetBuffer BackBuffer() 
 
 ;include "includes\collisions.bb"
-Global coll_player=1, coll_characters=2,  coll_objects=3, coll_projectile=4 
-
+Global coll_player=1, coll_characters=2,  coll_objects=3, coll_projectile=4
+;Global coll_player=1, coll_player_vehicle=2, coll_pedestrians=3, coll_traffic=4, coll_terrain=5, coll_physics=6, coll_projectile=7, coll_camera=8
+;Collisions coll_player, coll_player_vehicle, 1, 2
+;Collisions coll_player, coll_pedestrians, 1, 2
+;Collisions coll_player, coll_traffic, 2,1
+;Collisions coll_player, coll_terrain, 2,2
+;Collisions coll_player, coll_physics, 1,1
+;Collisions coll_player_vehicle, coll_pedestrians, 2,1
+;Collisions coll_player_vehicle, coll_traffic, 2,1
+;Collisions coll_player, coll_terrain, 2,2
+;Collisions coll_player, coll_physics, 1,1
 Collisions coll_projectile, coll_characters, 1,1
 Collisions coll_characters, coll_player, 1, 2    
 Collisions coll_player, coll_characters ,1, 2   
