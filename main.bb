@@ -1,6 +1,4 @@
 ;	Driber
-;	(c)2017 L33TMaster
-;	L33TMasterJacob@gmail.com
 ;	Main Program
 
 ;
