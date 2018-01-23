@@ -4,7 +4,7 @@ ScaleSprite spr_menu, 1.5, 1.5
 MoveEntity spr_menu, 0, 0, 2				
 HideEntity spr_menu							
 
-spr_start = LoadSprite( "btn_start.bmp", 7, camera_player )	
+spr_start = LoadSprite( "GFX\DEV\GO.PNG", 7, camera_player )	
 ScaleSprite spr_start, .25, .25						
 EntityRadius spr_start, .25						
 MoveEntity spr_start, -.5, 0, 2						
@@ -18,7 +18,7 @@ MoveEntity spr_quit, 0, 0, 2
 HideEntity spr_quit	
 EntityPickMode spr_quit,1
 
-spr_credits = LoadSprite( "btn_credits.bmp", 7, camera_player )	;lists all the cool people
+spr_credits = LoadSprite( "GFX\DEV\WHO.PNG", 7, camera_player )	;lists all the cool people
 ScaleSprite spr_credits, .25, .25
 EntityRadius spr_credits, .25
 MoveEntity spr_credits, .5, 0, 2
