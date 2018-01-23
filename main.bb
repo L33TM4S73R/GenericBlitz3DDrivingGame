@@ -1,7 +1,6 @@
 ;	Driber
 ;	Main Program
 
-;
 AppTitle "Dr1ber 0.0.1 LOLWUT"
 
 ; Insert future code HERE! i.e. constants, variables, functions
