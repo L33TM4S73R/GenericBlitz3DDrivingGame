@@ -27,8 +27,8 @@ Type Sprite
 End Type
 
 ; MAKE TERRAIN!
-Global temp_land = LoadTerrain( "GFX\DEV_SHIT\terrain_hmap.jpg" )
-temp_land_texture = LoadTexture( "GFX\DEV_SHIT\GRID.PNG" )
+Global temp_land = LoadTerrain( "GFX\TEMP\TEMP_TERRAIN_HMAP.JPG" )
+temp_land_texture = LoadTexture( "GFX\TEMP\TEMP_TERRAIN.PNG" )
 ScaleTexture temp_land_texture, 10, 10
 EntityTexture temp_land, temp_land_texture
 PositionEntity temp_land,-512,-8,-512
