@@ -42,7 +42,7 @@ CameraClsColor camera_player,128,0,128
 CameraViewport camera_player, 0, 0, screen_width, screen_height
 PositionEntity camera_player, 0, 6, -10
 
-; Load level "TAR, Undercover, and such" - ONLY MIAMI TAR NOW
+; Load level "TAR, Undercover, and such"
 Include "includes\level.bb" 
 
 LoadMusic()		
@@ -57,11 +57,10 @@ MENU()
 
 While QUIT = False	
 
-   ; key & mouse control functions!	
+	; key & mouse control functions!	
 	If KeyHit( escape_key ) Then MENU()
 	MousePick()
-	UpdateProjectiles()	
-;	If run_vol#>0 Then AnimSprite(PCar_Body, anim_tex,200,3)
+	UpdateProjectiles()
 	object_key_control( PCar_Body )
 	MoveCharacters( PCar_Body )
 	ChannelVolume runchannel, run_vol#

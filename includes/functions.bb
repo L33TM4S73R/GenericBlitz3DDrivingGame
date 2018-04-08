@@ -83,8 +83,8 @@ Function object_key_control( obj )
 	run_snd = False		
 	If KeyDown( forward_key )=True Then MoveEntity obj, 0, 0, .2 : run_snd=True
 	If KeyDown( reverse_key )=True Then MoveEntity obj, 0, 0,-.2 : run_snd=True
-	If KeyDown( left_key )=True Then TurnEntity obj, 0, 2, 0
-	If KeyDown( right_key )=True Then TurnEntity obj, 0,-2, 0
+	If KeyDown( forward_key )=True Or KeyDown( reverse_key )=True And KeyDown( left_key )=True Then TurnEntity obj, 0, 2, 0
+	If KeyDown( forward_key )=True Or KeyDown( reverse_key )=True And KeyDown( right_key )=True Then TurnEntity obj, 0,-2, 0
 	If run_snd Then run_vol#=.5 Else run_vol#=0
 	
 	objx#=EntityX(obj):objz#=EntityZ(obj)		; Make sure object is on Terrain
@@ -164,25 +164,22 @@ Function MoveCharacters(target)
 		Case 0		; Static
 			; Do Nothing or maybe run idle animation?
 			
-		Case 1		; Path 
+		Case 1		; Pathed AI
 			PointEntity Character\ID, Character\targetpt
 			MoveEntity Character\ID, 0, 0, Rnd(.05,.1)
-			AnimSprite(Character\ID, Character\char_tex, 200, 4)
 			If EntityDistance(Character\ID,Character\targetpt) < 1
 				If Character\targetpt = Character\pt1 Then 
 					Character\targetpt = Character\pt2
 					Else Character\targetpt = Character\pt1
 				EndIf
 			EndIf		
-		Case 2		; Path with Pursuit
+		Case 2		; Pursuit AI
 			If EntityDistance(Character\ID,target)<20
 				PointEntity Character\ID, target
 				MoveEntity Character\ID, 0, 0, Rnd(.1,.19)
-				AnimSprite(Character\ID, Character\char_tex, 200, 4)
 			Else
 				PointEntity Character\ID, Character\targetpt
 				MoveEntity Character\ID, 0, 0, Rnd(.05,.1)
-				AnimSprite(Character\ID, Character\char_tex, 200, 4)
 				If EntityDistance(Character\ID,Character\targetpt) < 1
 					If Character\targetpt = Character\pt1 Then 
 						Character\targetpt = Character\pt2

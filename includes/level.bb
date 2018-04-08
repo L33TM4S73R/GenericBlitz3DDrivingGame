@@ -85,43 +85,41 @@ For C=1 To 3
 Next
 
 .Characters 
-Data 0, "char2.bmp", 30, 0, 30, 30, 0, 0, "Test 1"	;adding speech lines(remove this shit)	
+Data 0, "char2.bmp", 30, 0, 30, 30, 0, 0, "Test 1"	;adding speech lines(remove this)	
 Data 1, "char3.bmp",-30, 0, 30, 20, 0, 30, "Test 2"
 Data 2, "char4.bmp", 0, 0, 30, -30, 0, 0, "Test 3"
 
 ; Playerstuff (I REALLY should move this from level.bb to it's own thing)
 ;Player Car
 	;Body
-	PCar_Body = CreateCube()
-	PositionEntity PCar_Body, 0, 0, 5
+	PCar_Body = LoadMesh( "GFX\TEMP\Chassis_TEMP.3ds" )
+	PositionEntity PCar_Body, 0, 1, 5
 	EntityRadius PCar_Body,1
-	EntityColor PCar_Body,0,0,254
+	ScaleEntity PCar_Body, .08, .08, .08
+;	RotateEntity PCar_Body,0,180,0
 
 	;Wheels
 		;Front Right
-		PCar_FRWheel=CreateCylinder(16,PCar_Body)
+		PCar_FRWheel=LoadMesh( "GFX\TEMP\Wheel_TEMP.3ds" )
 		PositionEntity PCar_FRWheel, 2, 1, 8
-		RotateEntity PCar_FRWheel,0,0,90
-;		ScaleEntity PCar_FRWheel,2.3,0.5,2.3
-		EntityColor PCar_FRWheel,0,0,254
+		ScaleEntity PCar_FRWheel,0.05,0.05,0.05
+;		RotateEntity PCar_FRWheel,0,0,90
+;		EntityColor PCar_FRWheel,0,0,254
 
 		;Front Left
 		PCar_FLWheel=CopyEntity(PCar_FRWheel)
 		PositionEntity PCar_FLWheel,-2,1,8
 ;		ScaleEntity PCar_FLWheel,-2.3.5,2.3
-		RotateEntity PCar_FLWheel,0,0,90
 
 		;--rearright
 		PCar_RRWheel=CopyEntity(PCar_FRWheel)
 		PositionEntity PCar_RRWheel,2,1,-1
 ;		ScaleEntity PCar_RRWheel,2.3,0.5,2.3
-		RotateEntity PCar_RRWheel,90,0,0
 
 		;--rearleft
 		PCar_RLWheel=CopyEntity(PCar_FRWheel)
 		PositionEntity PCar_RLWheel,-2,1,-1
 ;		ScaleEntity PCar_RLWheel,2.3,0.5,2.3
-		RotateEntity PCar_RLWheel,90,0,0
 
 	;Player Car Entity Parents
 		EntityParent camera_player, PCar_Body
@@ -136,7 +134,8 @@ Data 2, "char4.bmp", 0, 0, 30, -30, 0, 0, "Test 3"
 		EntityType PCar_FLWheel, coll_player
 		EntityType PCar_RRWheel, coll_player
 		EntityType PCar_RLWheel, coll_player
-; Comment out water for now(map loading isn't even properly working!)
+
+; Comment out water for now(map loading isn't even completely working!)
 ;water_plane=CreatePlane()
 ;water_plane_texture=LoadTexture("GFX\water.jpg")
 ;ScaleTexture water_plane_texture, 10, 10
