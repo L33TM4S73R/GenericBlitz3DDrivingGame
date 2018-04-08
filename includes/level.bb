@@ -100,27 +100,27 @@ Data 2, "char4.bmp", 0, 0, 30, -30, 0, 0, "Test 3"
 	;Wheels
 		;Front Right
 		PCar_FRWheel=CreateCylinder(16,PCar_Body)
-		PositionEntity PCar_FRWheel,9,0.8,5
-		RotateEntity PCar_FRWheel,0,90,90
-		ScaleEntity PCar_FRWheel,2.3,0.5,2.3
+		PositionEntity PCar_FRWheel, 2, 1, 8
+		RotateEntity PCar_FRWheel,0,0,90
+;		ScaleEntity PCar_FRWheel,2.3,0.5,2.3
 		EntityColor PCar_FRWheel,0,0,254
 
 		;Front Left
 		PCar_FLWheel=CopyEntity(PCar_FRWheel)
-		PositionEntity PCar_FLWheel,9,0.8,-5
-		ScaleEntity PCar_FLWheel,2.3,0.5,2.3
-		RotateEntity PCar_FLWheel,90,0,0
+		PositionEntity PCar_FLWheel,-2,1,8
+;		ScaleEntity PCar_FLWheel,-2.3.5,2.3
+		RotateEntity PCar_FLWheel,0,0,90
 
 		;--rearright
 		PCar_RRWheel=CopyEntity(PCar_FRWheel)
-		PositionEntity PCar_RRWheel,-9.2,0.8,5
-		ScaleEntity PCar_RRWheel,2.3,0.5,2.3
+		PositionEntity PCar_RRWheel,2,1,-1
+;		ScaleEntity PCar_RRWheel,2.3,0.5,2.3
 		RotateEntity PCar_RRWheel,90,0,0
 
 		;--rearleft
 		PCar_RLWheel=CopyEntity(PCar_FRWheel)
-		PositionEntity PCar_RLWheel,-9.2,0.8,-5
-		ScaleEntity PCar_RLWheel,2.3,0.5,2.3
+		PositionEntity PCar_RLWheel,-2,1,-1
+;		ScaleEntity PCar_RLWheel,2.3,0.5,2.3
 		RotateEntity PCar_RLWheel,90,0,0
 
 	;Player Car Entity Parents
@@ -137,7 +137,7 @@ Data 2, "char4.bmp", 0, 0, 30, -30, 0, 0, "Test 3"
 		EntityType PCar_RRWheel, coll_player
 		EntityType PCar_RLWheel, coll_player
 ; Comment out water for now(map loading isn't even properly working!)
-water_plane=CreatePlane()
-water_plane_texture=LoadTexture("GFX\water.jpg")
-ScaleTexture water_plane_texture, 10, 10
-EntityTexture water_plane,water_plane_texture
+;water_plane=CreatePlane()
+;water_plane_texture=LoadTexture("GFX\water.jpg")
+;ScaleTexture water_plane_texture, 10, 10
+;EntityTexture water_plane,water_plane_texture

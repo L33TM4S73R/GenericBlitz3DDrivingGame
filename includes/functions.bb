@@ -4,7 +4,7 @@ Global spr_menu, spr_start, spr_quit, spr_credits
 Global currentpicked, lastpicked, LeaveMenu=False, ShowCredits=False, speech$, AMMO=42
 ; Global W_key = 17, S_key=31, A_key=30, D_key=32
 Global run_vol#, runchannel
-Global PCar_Body, projectile_sprite, explosion_sprite, hit, shoot, boom	
+Global PCar_Body,PCar_FRWheel,PCar_FLWheel,PCar_RRWheel,PCar_RLWheel, projectile_sprite, explosion_sprite, hit, shoot, boom	
 
 Function MENU()			; MENU
 	
@@ -64,7 +64,7 @@ Function MousePick()		; MOUSEPICK
 	EndIf
 End Function
 
-
+;Sound FX
 Function LoadSFX()	
    	shoot = LoadSound( "SFX\temp\gunbang.wav" )
    	SoundVolume shoot, .9
@@ -77,23 +77,21 @@ Function LoadSFX()
     runchannel = PlaySound (run)
 End Function
 
-; Keyboard & Mouse Controls will be here
+; Keyboard & Mouse Controls
 Function object_key_control( obj )
 	If KeyHit(57) And AMMO>0 Then CreateProjectile( PCar_Body ) : AMMO=AMMO-1
 	run_snd = False		
-	If KeyDown( forward_key )=True Then MoveEntity obj, 0, 0, .2 : run_snd=True 
-	If KeyDown( reverse_key )=True Then MoveEntity obj, 0, 0,-.2 : run_snd=True 
-;	While KeyDown( forward_key )
-		If KeyDown( left_key )=True Then TurnEntity obj, 0, 2, 0 
-		If KeyDown( right_key )=True Then TurnEntity obj, 0,-2, 0 	
-;	Wend
+	If KeyDown( forward_key )=True Then MoveEntity obj, 0, 0, .2 : run_snd=True
+	If KeyDown( reverse_key )=True Then MoveEntity obj, 0, 0,-.2 : run_snd=True
+	If KeyDown( left_key )=True Then TurnEntity obj, 0, 2, 0
+	If KeyDown( right_key )=True Then TurnEntity obj, 0,-2, 0
 	If run_snd Then run_vol#=.5 Else run_vol#=0
 	
 	objx#=EntityX(obj):objz#=EntityZ(obj)		; Make sure object is on Terrain
 	PositionEntity obj, objx, TerrainY( temp_land, objx, 0, objz ), objz
 End Function
 
-; **************   PROJECTILE SECTION   ****************
+; Shooting from Player Car
 Function UpdateProjectiles()
    For P.Projectile=Each Projectile
       UpdateProjectile( P )
@@ -107,7 +105,7 @@ Function CreateProjectile.Projectile( source )
    P.Projectile = New Projectile
    P\time_out = 150
    P\sprite = CopyEntity( projectile_sprite, source )
-   MoveEntity P\sprite, 0, 2, 0	
+   MoveEntity P\sprite, -2.5, 2, 0	
    EntityParent P\sprite,0
    shootChannel = PlaySound (shoot)
    Return P
@@ -158,7 +156,7 @@ Function UpdateExplosion( E.Explosion )
       Next
    EndIf
 End Function
-; **************************************************************
+; Characters(Remove this.....somehow)
 
 Function MoveCharacters(target)
 	For Character.Sprite = Each Sprite
@@ -225,6 +223,7 @@ Function AnimSprite(obj, atex, d, f)
 	frame=MilliSecs()/d Mod f
 	EntityTexture obj,atex,frame
 End Function
+
 ; Music (Move to Level or expand to make it less generic)
 Function LoadMusic()
 	level_music = PlayMusic ("MUSIC\temp\mlg.mp3")

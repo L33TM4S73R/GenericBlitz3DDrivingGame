@@ -40,7 +40,7 @@ Collisions coll_characters, coll_objects, 2, 2
 Global camera_player = CreateCamera()
 CameraClsColor camera_player,128,0,128
 CameraViewport camera_player, 0, 0, screen_width, screen_height
-PositionEntity camera_player, 0, 5, -2
+PositionEntity camera_player, 0, 6, -10
 
 ; Load level "TAR, Undercover, and such" - ONLY MIAMI TAR NOW
 Include "includes\level.bb" 
