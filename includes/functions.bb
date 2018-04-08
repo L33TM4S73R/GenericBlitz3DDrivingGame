@@ -1,7 +1,7 @@
 Include "includes\key_globals.bb"
 
 Global spr_menu, spr_start, spr_quit, spr_credits
-Global currentpicked, lastpicked, LeaveMenu=False, ShowCredits=False, speech$, AMMO=42
+Global currentpicked, lastpicked, LeaveMenu=False, ShowCredits=False, AMMO=42
 ; Global W_key = 17, S_key=31, A_key=30, D_key=32
 Global run_vol#, runchannel
 Global PCar_Body,PCar_FRWheel,PCar_FLWheel,PCar_RRWheel,PCar_RLWheel, projectile_sprite, explosion_sprite, hit, shoot, boom	
@@ -47,14 +47,7 @@ Function MousePick()		; MOUSEPICK
 		If currentpicked = spr_start Then LeaveMenu = True
 		If currentpicked = spr_quit Then QUIT=True
 		If currentpicked = spr_credits Then ShowCredits = True
-		For Character.Sprite = Each Sprite
-			If currentpicked = Character\ID
-				speech$ = Character\speech$
-			Exit
-			EndIf
-		Next
 	EndIf
-	If MouseHit(2) Then speech$=""		;Right Mouse Click Closes Speech
 	If currentpicked<>lastpicked
 		If lastpicked Then EntityAlpha lastpicked, 1	;UNDO fade when mouse leaves
 		lastpicked=currentpicked
@@ -81,8 +74,8 @@ End Function
 Function object_key_control( obj )
 	If KeyHit(57) And AMMO>0 Then CreateProjectile( PCar_Body ) : AMMO=AMMO-1
 	run_snd = False		
-	If KeyDown( forward_key )=True Then MoveEntity obj, 0, 0, .2 : run_snd=True
-	If KeyDown( reverse_key )=True Then MoveEntity obj, 0, 0,-.2 : run_snd=True
+	If KeyDown( forward_key )=True Then MoveEntity obj, 0, 0, .3 : run_snd=True
+	If KeyDown( reverse_key )=True Then MoveEntity obj, 0, 0,-.3 : run_snd=True
 	If KeyDown( forward_key )=True Or KeyDown( reverse_key )=True And KeyDown( left_key )=True Then TurnEntity obj, 0, 2, 0
 	If KeyDown( forward_key )=True Or KeyDown( reverse_key )=True And KeyDown( right_key )=True Then TurnEntity obj, 0,-2, 0
 	If run_snd Then run_vol#=.5 Else run_vol#=0
@@ -113,10 +106,10 @@ End Function
 
 Function UpdateProjectile( P.Projectile )
    If CountCollisions( P\sprite )
-      If EntityCollided( P\sprite, coll_characters )
+      If EntityCollided( P\sprite, Coll_Pedestrians )
          For k=1 To CountCollisions( P\sprite )
             hit=CollisionEntity( P\sprite, k )
-            If GetEntityType( hit ) = coll_characters
+            If GetEntityType( hit ) = Coll_Pedestrians
                Exit
             EndIf
          Next
@@ -156,12 +149,12 @@ Function UpdateExplosion( E.Explosion )
       Next
    EndIf
 End Function
-; Characters(Remove this.....somehow)
+; AI
 
 Function MoveCharacters(target)
 	For Character.Sprite = Each Sprite
 	  Select Character\temper
-		Case 0		; Static
+		Case 0		; Static and/or parked
 			; Do Nothing or maybe run idle animation?
 			
 		Case 1		; Pathed AI
@@ -200,7 +193,7 @@ Function LoadRandomSprites(sprite$, total, x1, x2, z1, z2)
 	SpriteViewMode temp_sprite,3
 	EntityAutoFade temp_sprite,100,120
 	
-	EntityType temp_sprite, coll_objects
+	EntityType temp_sprite, Coll_Terrain
 	EntityRadius temp_sprite,1
 	
 	For s=1 To total

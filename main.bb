@@ -1,12 +1,12 @@
 ;	Driber
 ;	Main Program
 
-AppTitle "Dr1ber 0.0.3 LOLWUT"
+AppTitle "Dr1ber 0.0.4 LOLWUT"
 
 ; Insert future code HERE! i.e. constants, variables, functions
+Include "includes\functions.bb"
 
 SeedRnd MilliSecs()
-Include "includes\functions.bb"
 
 ; "Globalizing" is good for commonly used values
 Global screen_width = 800, screen_height = 600
@@ -18,24 +18,22 @@ Graphics3D screen_width,screen_height, 32, windowed_fullscreen
 SetBuffer BackBuffer() 
 
 ;include "includes\collisions.bb"
-Global coll_player=1, coll_characters=2,  coll_objects=3, coll_projectile=4
-;Global coll_player=1, coll_player_vehicle=2, coll_pedestrians=3, coll_traffic=4, coll_terrain=5, coll_physics=6, coll_projectile=7, coll_camera=8
-;Collisions coll_player, coll_player_vehicle, 1, 2
+Global Coll_PlayerCar=1, Coll_PlayerCarWheel=2, Coll_Pedestrians=3,  Coll_Terrain=4, coll_projectile=5
+;Global coll_player=1, Coll_PlayerCar=2, Coll_Pedestrians=3, coll_traffic=4, Coll_Terrain=5, coll_physics=6, coll_projectile=7, coll_camera=8
+;Collisions coll_player, Coll_PlayerCar, 1, 2
 ;Collisions coll_player, coll_pedestrians, 1, 2
 ;Collisions coll_player, coll_traffic, 2,1
-;Collisions coll_player, coll_terrain, 2,2
+;Collisions coll_player, Coll_Terrain, 2,2
 ;Collisions coll_player, coll_physics, 1,1
-;Collisions coll_player_vehicle, coll_pedestrians, 2,1
-;Collisions coll_player_vehicle, coll_traffic, 2,1
-;Collisions coll_player, coll_terrain, 2,2
-;Collisions coll_player, coll_physics, 1,1
-Collisions coll_projectile, coll_characters, 1,1
-Collisions coll_characters, coll_player, 1, 2    
-Collisions coll_player, coll_characters ,1, 2   
-Collisions coll_player, coll_objects, 2, 2		
-Collisions coll_characters, coll_characters, 1, 2	
-Collisions coll_characters, coll_objects, 2, 2
-
+Collisions Coll_PlayerCar, Coll_Pedestrians, 1,2
+;Collisions Coll_PlayerCar, coll_traffic, 2,1
+Collisions Coll_PlayerCar, Coll_Terrain, 2,3
+;Collisions Coll_PlayerCar, coll_physics, 1,1
+Collisions Coll_PlayerCarWheel, Coll_Terrain,2,3
+Collisions coll_projectile, Coll_Pedestrians, 1,1
+Collisions Coll_Pedestrians, Coll_PlayerCar, 1, 2 
+Collisions Coll_Pedestrians, Coll_Pedestrians, 1, 2	
+Collisions Coll_Pedestrians, Coll_Terrain, 2, 2
 ; Setup camera 
 Global camera_player = CreateCamera()
 CameraClsColor camera_player,128,0,128
@@ -73,12 +71,9 @@ While QUIT = False
 	Text 50,50,"Dr1ber Test"
 	Text 0,0,FPS()
 	Text 50,410, AMMO
-	Text screen_width/2, 10, speech$, True
 
 	Flip
 
 Wend
 
 End
-
-; Repeatedly used functions appear here later 
