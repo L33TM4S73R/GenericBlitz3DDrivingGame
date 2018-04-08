@@ -4,7 +4,7 @@ Global spr_menu, spr_start, spr_quit, spr_credits
 Global currentpicked, lastpicked, LeaveMenu=False, ShowCredits=False, speech$, AMMO=42
 ; Global W_key = 17, S_key=31, A_key=30, D_key=32
 Global run_vol#, runchannel
-Global player, projectile_sprite, explosion_sprite, hit, shoot, boom	
+Global PCar_Body, projectile_sprite, explosion_sprite, hit, shoot, boom	
 
 Function MENU()			; MENU
 	
@@ -79,7 +79,7 @@ End Function
 
 ; Keyboard & Mouse Controls will be here
 Function object_key_control( obj )
-	If KeyHit(57) And AMMO>0 Then CreateProjectile( player ) : AMMO=AMMO-1
+	If KeyHit(57) And AMMO>0 Then CreateProjectile( PCar_Body ) : AMMO=AMMO-1
 	run_snd = False		
 	If KeyDown( forward_key )=True Then MoveEntity obj, 0, 0, .2 : run_snd=True 
 	If KeyDown( reverse_key )=True Then MoveEntity obj, 0, 0,-.2 : run_snd=True 

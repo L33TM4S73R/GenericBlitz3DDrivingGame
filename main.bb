@@ -1,7 +1,7 @@
 ;	Driber
 ;	Main Program
 
-AppTitle "Dr1ber 0.0.1 LOLWUT"
+AppTitle "Dr1ber 0.0.3 LOLWUT"
 
 ; Insert future code HERE! i.e. constants, variables, functions
 
@@ -61,11 +61,11 @@ While QUIT = False
 	If KeyHit( escape_key ) Then MENU()
 	MousePick()
 	UpdateProjectiles()	
-	If run_vol#>0 Then AnimSprite(player, anim_tex,200,3)
-	object_key_control( player )
-	MoveCharacters( player )
+;	If run_vol#>0 Then AnimSprite(PCar_Body, anim_tex,200,3)
+	object_key_control( PCar_Body )
+	MoveCharacters( PCar_Body )
 	ChannelVolume runchannel, run_vol#
-	PositionEntity skybox, EntityX(player), EntityY(player), EntityZ(player)
+	PositionEntity skybox, EntityX(PCar_Body), EntityY(PCar_Body), EntityZ(PCar_Body)
 
 	UpdateWorld 
 	RenderWorld

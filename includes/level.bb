@@ -89,17 +89,53 @@ Data 0, "char2.bmp", 30, 0, 30, 30, 0, 0, "Test 1"	;adding speech lines(remove t
 Data 1, "char3.bmp",-30, 0, 30, 20, 0, 30, "Test 2"
 Data 2, "char4.bmp", 0, 0, 30, -30, 0, 0, "Test 3"
 
-; Playerstuff (I should move this from level.bb to it's own thing)
-player = CreateSprite() 
-anim_tex=LoadAnimTexture( "GFX\VEHICLES\MIAMI\CAR00.PNG",7,51,48,0,3)
-EntityTexture player, anim_tex, 1
-HandleSprite player,0,-1
-ScaleSprite player, 2, 2
-PositionEntity player, 0, 0, 5
-EntityParent camera_player, player
-EntityRadius player,1
-EntityType player, coll_player					
+; Playerstuff (I REALLY should move this from level.bb to it's own thing)
+;Player Car
+	;Body
+	PCar_Body = CreateCube()
+	PositionEntity PCar_Body, 0, 0, 5
+	EntityRadius PCar_Body,1
+	EntityColor PCar_Body,0,0,254
 
+	;Wheels
+		;Front Right
+		PCar_FRWheel=CreateCylinder(16,PCar_Body)
+		PositionEntity PCar_FRWheel,9,0.8,5
+		RotateEntity PCar_FRWheel,0,90,90
+		ScaleEntity PCar_FRWheel,2.3,0.5,2.3
+		EntityColor PCar_FRWheel,0,0,254
+
+		;Front Left
+		PCar_FLWheel=CopyEntity(PCar_FRWheel)
+		PositionEntity PCar_FLWheel,9,0.8,-5
+		ScaleEntity PCar_FLWheel,2.3,0.5,2.3
+		RotateEntity PCar_FLWheel,90,0,0
+
+		;--rearright
+		PCar_RRWheel=CopyEntity(PCar_FRWheel)
+		PositionEntity PCar_RRWheel,-9.2,0.8,5
+		ScaleEntity PCar_RRWheel,2.3,0.5,2.3
+		RotateEntity PCar_RRWheel,90,0,0
+
+		;--rearleft
+		PCar_RLWheel=CopyEntity(PCar_FRWheel)
+		PositionEntity PCar_RLWheel,-9.2,0.8,-5
+		ScaleEntity PCar_RLWheel,2.3,0.5,2.3
+		RotateEntity PCar_RLWheel,90,0,0
+
+	;Player Car Entity Parents
+		EntityParent camera_player, PCar_Body
+		EntityParent PCar_FRWheel,PCar_Body
+		EntityParent PCar_FLWheel,PCar_Body
+		EntityParent PCar_RRWheel,PCar_Body
+		EntityParent PCar_RLWheel,PCar_Body				
+
+	;Player Car Entity Types(For Collision)
+		EntityType PCar_Body, coll_player
+		EntityType PCar_FRWheel, coll_player
+		EntityType PCar_FLWheel, coll_player
+		EntityType PCar_RRWheel, coll_player
+		EntityType PCar_RLWheel, coll_player
 ; Comment out water for now(map loading isn't even properly working!)
 water_plane=CreatePlane()
 water_plane_texture=LoadTexture("GFX\water.jpg")
