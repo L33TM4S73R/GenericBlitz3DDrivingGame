@@ -1,7 +1,7 @@
 ;	Driber
 ;	Main Program
 
-AppTitle "Dr1ber 0.1.0 REAL PHYSX"
+AppTitle "Dr1ber 0.1.1 REAL PHYSX"
 
 ; Insert future code HERE! i.e. constants, variables, functions
 Include "includes\functions.bb"
@@ -34,8 +34,8 @@ PositionEntity Camera_PlayerCar_3rd, 0, 6, -13
 Include "includes\player.bb"
 Include "includes\level.bb" 
 
-;LoadMusic()		
-;LoadSFX()
+LoadMusic()		
+LoadSFX()
 
 MoveMouse screen_width/2, screen_height/2
 
@@ -58,7 +58,7 @@ While QUIT = False
 ;	MousePick()
 ;	object_key_control( PCar_Body )
 ;	MoveCharacters( PCar_Body )
-;	ChannelVolume runchannel, run_vol#
+	ChannelVolume runchannel, run_vol#
 	PositionEntity skybox, EntityX(PCar_Body), EntityY(PCar_Body), EntityZ(PCar_Body)
 
 	;Align car body to wheels
@@ -94,26 +94,10 @@ While QUIT = False
 	Next
 	Next
 
-	;move car
-	If KeyDown( forward_key ) Or KeyDown( reverse_key ) And KeyDown( left_key ) TurnEntity PCar_Body,0,2,0
-	If KeyDown( forward_key ) Or KeyDown( reverse_key ) And KeyDown( right_key ) TurnEntity PCar_Body,0,-2,0
-	If EntityCollided( PCar_Body,Coll_Terrain )
-		If KeyDown( forward_key )
-			speed=speed+.02
-			If speed>.7 speed=.7
-		Else If KeyDown( reverse_key )
-			speed=speed-.01
-			If speed<-.5 speed=-.5
-		Else
-			speed=speed*.9
-		EndIf
-		MoveEntity PCar_Body,0,0,speed
-		TranslateEntity PCar_Body,0,GRAVITY,0
-	Else
-		TranslateEntity PCar_Body,x_vel,y_vel+GRAVITY,z_vel
-	EndIf
-
-	; Update 3rd Person Camera
+; Keyboard & Mouse Controls
+	Include "includes\controls.bb" 
+	
+; Update 3rd Person Camera
 	If speed>=0	
 		dx#=EntityX( target,True )-EntityX( Camera_PlayerCar_3rd )
 		dy#=EntityY( target,True )-EntityY( Camera_PlayerCar_3rd )

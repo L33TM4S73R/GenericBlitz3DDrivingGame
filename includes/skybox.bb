@@ -1,6 +1,6 @@
 ; Makes a skybox
 skybox = CreateCube()
-skybox_texture = LoadTexture("GFX\CITIES\MIAMI_DAY\MIAMI_SKY_DAY.PNG")
+skybox_texture = LoadTexture("GFX\TEMP\TEMP_SKYBOX.PNG")
 EntityTexture skybox,skybox_texture
 ScaleEntity skybox,400,400,400
 FlipMesh skybox

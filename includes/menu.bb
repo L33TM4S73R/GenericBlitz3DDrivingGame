@@ -1,5 +1,5 @@
 ; Menu GFX
-spr_menu = LoadSprite( "GFX\OVERLAYS\MENU.PNG",1+2+256, camera_player )		;Why is it invisible...........STILL!
+spr_menu = LoadSprite( "GFX\TEMP\TEMP_MENU.PNG",1+2+256, camera_player )		;Why is it invisible...........STILL!
 ScaleSprite spr_menu, 1.5, 1.5						
 MoveEntity spr_menu, 0, 0, 2				
 HideEntity spr_menu							
