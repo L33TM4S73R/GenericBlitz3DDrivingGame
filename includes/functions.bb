@@ -1,60 +1,59 @@
 Include "includes\key_globals.bb"
 
-;Global spr_menu, spr_start, spr_quit, spr_credits
-;Global currentpicked, lastpicked, LeaveMenu=False, ShowCredits=False
+Global spr_menu, spr_start, spr_quit, spr_credits
+Global currentpicked, lastpicked, LeaveMenu=False, ShowCredits=False
 Global run_vol#, runchannel
-;Global PCar_Body	
 
-;Function MENU()			; MENU
+Function MENU()			; MENU
 	
-;	ShowEntity spr_menu	
-;	ShowEntity spr_start
-;	ShowEntity spr_quit	
-;	ShowEntity spr_credits
-;	LeaveMenu=False 
+	ShowEntity spr_menu	
+	ShowEntity spr_start
+	ShowEntity spr_quit	
+	ShowEntity spr_credits
+	LeaveMenu=False 
 	
-;	While Not KeyHit( escape_key )
+	While Not KeyHit( escape_key )
 		
-;		MousePick()
-;		If QUIT=True Then Return
-;		If LeaveMenu = True Then Exit
+		MousePick()
+		If QUIT=True Then Return
+		If LeaveMenu = True Then Exit
 		
-;		UpdateWorld 
-;		RenderWorld
+		UpdateWorld 
+		RenderWorld
 		
-;		If ShowCredits = True Then
-;			Color 255,255,0
-;			Text 10,10, "By L33TMaster"
-;		EndIf
+		If ShowCredits = True Then
+			Color 255,255,0
+			Text 10,10, "By L33TMaster"
+		EndIf
 			
-;		Flip
-;		Delay 10
-;	Wend
+		Flip
+		Delay 10
+	Wend
 	
-;	HideEntity spr_menu	
-;	HideEntity spr_start
-;	HideEntity spr_quit	
-;	HideEntity spr_credits
-;	LeaveMenu=False
-;	ShowCredits=False
+	HideEntity spr_menu	
+	HideEntity spr_start
+	HideEntity spr_quit	
+	HideEntity spr_credits
+	LeaveMenu=False
+	ShowCredits=False
 		
-;End Function
+End Function
 
-;Function MousePick()		; MOUSEPICK
-;	currentpicked = CameraPick( camera_player, MouseX(), MouseY() )
-;	If currentpicked>0 And MouseHit(1)
-;		If currentpicked = spr_start Then LeaveMenu = True
-;		If currentpicked = spr_quit Then QUIT=True
-;		If currentpicked = spr_credits Then ShowCredits = True
-;	EndIf
-;	If currentpicked<>lastpicked
-;		If lastpicked Then EntityAlpha lastpicked, 1	;UNDO fade when mouse leaves
-;		lastpicked=currentpicked
-;	EndIf
-;	If currentpicked
-;		EntityAlpha currentpicked, Sin( MilliSecs() )*.3+.7
-;	EndIf
-;End Function
+Function MousePick()		; MOUSEPICK
+	currentpicked = CameraPick( Camera_PlayerCar_3rd, MouseX(), MouseY() )
+	If currentpicked>0 And MouseHit(1)
+		If currentpicked = spr_start Then LeaveMenu = True
+		If currentpicked = spr_quit Then QUIT=True
+		If currentpicked = spr_credits Then ShowCredits = True
+	EndIf
+	If currentpicked<>lastpicked
+		If lastpicked Then EntityAlpha lastpicked, 1	;UNDO fade when mouse leaves
+		lastpicked=currentpicked
+	EndIf
+	If currentpicked
+		EntityAlpha currentpicked, Sin( MilliSecs() )*.3+.7
+	EndIf
+End Function
 
 ; Sound FX
 Function LoadSFX()	
@@ -62,15 +61,6 @@ Function LoadSFX()
     LoopSound run			
     SoundVolume run, 0	
     runchannel = PlaySound (run)
-End Function
-
-; Music (Move to Level or expand to make it less generic)
-Function LoadMusic()
-	level_music = PlayMusic ("MUSIC\TEMP\1.MP3")
-	ChannelVolume level_music,.5	
-	If KeyHit( escape_key )
-		StopChannel level_music
-	EndIf
 End Function
 
 ; Development Features

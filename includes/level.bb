@@ -25,6 +25,16 @@ EntityType temp_land,Coll_Terrain
 ;PositionEntity miami_day, 0, TerrainY( temp_land, 0, 0, 30 ), 30
 ;EntityType miami_day, Coll_Terrain
 
+; Music (Move to Level or expand to make it less generic)
+Function LoadMusic()
+;	level_music = ReadLine(MusicINI)
+	level_music = PlayMusic ("MUSIC\TEMP\1.MP3")
+	ChannelVolume level_music,.5	
+	If KeyHit( escape_key )
+		StopChannel level_music
+	EndIf
+End Function
+
 ; Load MENU Sprites
 ;Include "includes\menu.bb"
 
@@ -32,8 +42,7 @@ EntityType temp_land,Coll_Terrain
 ;Include "includes\hud.bb"
 
 ; Playerstuff
-;PositionEntity PCar_Body, 0, 2, 0
-PositionEntity PCar_Body,0,70,0
+PositionEntity PCar_Body,0,3,0
 
 ; Water Plane - Comment out water for now(map loading isn't even completely working!)
 ;water_plane=CreatePlane()
