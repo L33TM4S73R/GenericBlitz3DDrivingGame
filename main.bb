@@ -7,14 +7,10 @@ AppTitle "Dr1ber 0.1.1 REAL PHYSX"
 SeedRnd MilliSecs()
 Global gFPS, gRenders, gFPSTimer
 
-; INI File Stuff
-SettingsINI = ReadFile("graphics.ini")
-ReadLine(SettingsINI)
-
 ; Insert future code HERE! i.e. constants, variables, functions
 Include "includes\functions.bb"
 
-; "Globalizing" is good for commonly used values
+; INI File Stuff
 GraphicsINI = ReadFile("graphics.ini")
 ReadLine(GraphicsINI)
 
