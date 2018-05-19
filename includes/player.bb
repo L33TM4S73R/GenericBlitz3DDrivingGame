@@ -5,18 +5,18 @@
 			EntityType PCar_Body,Coll_PlayerCar
 		
 	;Wheels
-		Global wheels[4]
+		Global PCar_Wheels[4]
 
 			cnt=1
 			For z#=1.5 To -1.5 Step -3
 				For x#=-1 To 1 Step 2
-;					wheels[cnt]=LoadMesh( "GFX\TEMP\Wheel_TEMP.3ds" )( 8,PCar_Body )
-					wheels[cnt]=CreateSphere( 8,PCar_Body )
-						EntityAlpha wheels[cnt],.5
-						ScaleEntity wheels[cnt],.5,.5,.5
-						EntityRadius wheels[cnt],.5
-						PositionEntity wheels[cnt],x,0,z
-						EntityType wheels[cnt],Coll_PlayerCarWheel
+;					PCar_Wheels[cnt]=LoadMesh( "GFX\TEMP\Wheel_TEMP.3ds" )( PCar_Body )
+					PCar_Wheels[cnt]=CreateSphere( 8,PCar_Body )
+						EntityAlpha PCar_Wheels[cnt],.5
+;						ScaleEntity PCar_Wheels[cnt],.5,.5,.5
+						EntityRadius PCar_Wheels[cnt],.5
+						PositionEntity PCar_Wheels[cnt],x,0,z
+						EntityType PCar_Wheels[cnt],Coll_PlayerCarWheel
 					cnt=cnt+1
 				Next
 			Next

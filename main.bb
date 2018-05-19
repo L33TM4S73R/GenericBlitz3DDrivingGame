@@ -44,7 +44,7 @@ Include "includes\menu.bb"
 ; Load HUD and Misc. Sprites
 ;Include "includes\hud.bb"
 
-LoadMusic()		
+;LoadMusic()		
 LoadSFX()
 
 MoveMouse screen_width/2, screen_height/2
@@ -67,20 +67,20 @@ While QUIT = False
 	PositionEntity skybox, EntityX(PCar_Body), EntityY(PCar_Body), EntityZ(PCar_Body)
 
 	;Align car body to wheels
-	zx#=(EntityX( wheels[2],True )+EntityX( wheels[4],True ))/2
-	zx=zx-(EntityX( wheels[1],True )+EntityX( wheels[3],True ))/2
-	zy#=(EntityY( wheels[2],True )+EntityY( wheels[4],True ))/2
-	zy=zy-(EntityY( wheels[1],True )+EntityY( wheels[3],True ))/2
-	zz#=(EntityZ( wheels[2],True )+EntityZ( wheels[4],True ))/2
-	zz=zz-(EntityZ( wheels[1],True )+EntityZ( wheels[3],True ))/2
+	zx#=(EntityX( PCar_Wheels[2],True )+EntityX( PCar_Wheels[4],True ))/2
+	zx=zx-(EntityX( PCar_Wheels[1],True )+EntityX( PCar_Wheels[3],True ))/2
+	zy#=(EntityY( PCar_Wheels[2],True )+EntityY( PCar_Wheels[4],True ))/2
+	zy=zy-(EntityY( PCar_Wheels[1],True )+EntityY( PCar_Wheels[3],True ))/2
+	zz#=(EntityZ( PCar_Wheels[2],True )+EntityZ( PCar_Wheels[4],True ))/2
+	zz=zz-(EntityZ( PCar_Wheels[1],True )+EntityZ( PCar_Wheels[3],True ))/2
 	AlignToVector PCar_Body,zx,zy,zz,1
 	
-	zx#=(EntityX( wheels[1],True )+EntityX( wheels[2],True ))/2
-	zx=zx-(EntityX( wheels[3],True )+EntityX( wheels[4],True ))/2
-	zy#=(EntityY( wheels[1],True )+EntityY( wheels[2],True ))/2
-	zy=zy-(EntityY( wheels[3],True )+EntityY( wheels[4],True ))/2
-	zz#=(EntityZ( wheels[1],True )+EntityZ( wheels[2],True ))/2
-	zz=zz-(EntityZ( wheels[3],True )+EntityZ( wheels[4],True ))/2
+	zx#=(EntityX( PCar_Wheels[1],True )+EntityX( PCar_Wheels[2],True ))/2
+	zx=zx-(EntityX( PCar_Wheels[3],True )+EntityX( PCar_Wheels[4],True ))/2
+	zy#=(EntityY( PCar_Wheels[1],True )+EntityY( PCar_Wheels[2],True ))/2
+	zy=zy-(EntityY( PCar_Wheels[3],True )+EntityY( PCar_Wheels[4],True ))/2
+	zz#=(EntityZ( PCar_Wheels[1],True )+EntityZ( PCar_Wheels[2],True ))/2
+	zz=zz-(EntityZ( PCar_Wheels[3],True )+EntityZ( PCar_Wheels[4],True ))/2
 	AlignToVector PCar_Body,zx,zy,zz,3
 	
 	;calculate car velocities	
@@ -92,9 +92,9 @@ While QUIT = False
 	cnt=1
 	For z=1.5 To -1.5 Step -3
 		For x=-1 To 1 Step 2
-;			PositionEntity wheels[cnt],0,0,0
-;			ResetEntity wheels[cnt]
-			PositionEntity wheels[cnt],x,-1,z
+;			PositionEntity PCar_Wheels[cnt],0,0,0
+;			ResetEntity PCar_Wheels[cnt]
+			PositionEntity PCar_Wheels[cnt],x,-1,z
 			cnt=cnt+1
 		Next
 	Next
