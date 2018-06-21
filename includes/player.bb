@@ -10,7 +10,7 @@
 			cnt=1
 			For z#=1.5 To -1.5 Step -3
 				For x#=-1 To 1 Step 2
-;					PCar_Wheels[cnt]=LoadMesh( "GFX\TEMP\Wheel_TEMP.3ds" )( PCar_Body )
+;					PCar_Wheels[cnt]=LoadMesh( "GFX\TEMP\Wheel_TEMP.3ds" )( 8,PCar_Body )
 					PCar_Wheels[cnt]=CreateSphere( 8,PCar_Body )
 						EntityAlpha PCar_Wheels[cnt],.5
 ;						ScaleEntity PCar_Wheels[cnt],.5,.5,.5

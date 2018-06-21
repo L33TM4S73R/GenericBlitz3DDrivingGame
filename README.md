@@ -1,11 +1,13 @@
 # GenericBlitz3DDrivingGame
 
 NOTE! EVERYTHING HERE IS A WIP!
-Currently 0.1.1
 
 Current Goals:
 Realistic Physics;
 Loading more info from external .ini files
+Bugfixes
+Actual Gameplay
+A good framework
 
 Future Goals:
 Modding Framework;

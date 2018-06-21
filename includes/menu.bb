@@ -23,3 +23,10 @@ EntityRadius spr_credits, .25
 MoveEntity spr_credits, 0, 0, 2
 HideEntity spr_credits	
 EntityPickMode spr_credits,1
+
+;spr_freecam = LoadSprite( "GFX\TEMP\TEMP_NO.PNG",1+2+256, Camera_PlayerCar_3rd )	;lists all the cool people
+;ScaleSprite spr_freecam, .25, .25
+;EntityRadius spr_freecam, .25
+;MoveEntity spr_freecam, -10, 0, 2
+;HideEntity spr_freecam	
+;EntityPickMode spr_freecam,1

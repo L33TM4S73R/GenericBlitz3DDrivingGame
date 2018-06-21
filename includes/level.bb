@@ -12,7 +12,7 @@ Const GRAVITY#=-0.01 ;gravity constant
 
 ; Load temporary land
 Global temp_land = LoadTerrain( "GFX\TEMP\TEMP_TERRAIN_HMAP.JPG" )
-temp_land_texture = LoadTexture( "GFX\TEMP\TEMP_TERRAIN.PNG" )
+temp_land_texture = LoadTexture( "GFX\TERR\DEV.PNG" )
 ScaleTexture temp_land_texture, 10, 10
 EntityTexture temp_land, temp_land_texture
 PositionEntity temp_land,-512,-8,-512
@@ -25,7 +25,7 @@ EntityType temp_land,Coll_Terrain
 ;PositionEntity miami_day, 0, TerrainY( temp_land, 0, 0, 30 ), 30
 ;EntityType miami_day, Coll_Terrain
 
-; Music (Move to Level or expand to make it less generic)
+; Music (Expand to make it less generic)
 Function LoadMusic()
 ;	level_music = ReadLine(MusicINI)
 	level_music = PlayMusic ("MUSIC\TEMP\1.MP3")
@@ -34,12 +34,6 @@ Function LoadMusic()
 		StopChannel level_music
 	EndIf
 End Function
-
-; Load MENU Sprites
-;Include "includes\menu.bb"
-
-; Load HUD and Misc. Sprites
-;Include "includes\hud.bb"
 
 ; Playerstuff
 PositionEntity PCar_Body,0,3,0

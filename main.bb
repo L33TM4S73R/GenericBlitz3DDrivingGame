@@ -1,7 +1,7 @@
-;	Driber
+;	GB3DG
 ;	Main Program
 
-AppTitle "Dr1ber 0.1.1 REAL PHYSX"
+AppTitle "GB3DG (Working Title)"
 
 ;Setting up Dev Features
 SeedRnd MilliSecs()
@@ -28,8 +28,10 @@ Global Coll_PlayerCar=1,Coll_PlayerCarWheel=2,Coll_Terrain=3
 Collisions Coll_PlayerCar,Coll_Terrain,2,3
 Collisions Coll_PlayerCarWheel,Coll_Terrain,2,3
 
-; Setup camera 
+; Setup cameras 
+;Global Camera_PlayerCar_1st = CreateCamera(); - Not fully implemented.
 Global Camera_PlayerCar_3rd = CreateCamera()
+;Global Camera_Freecam = CreateCamera(); - Also not fully implemented.
 CameraClsColor Camera_PlayerCar_3rd,128,0,128
 CameraViewport Camera_PlayerCar_3rd, 0, 0, screen_width, screen_height
 PositionEntity Camera_PlayerCar_3rd, 0, 6, -13
@@ -42,9 +44,9 @@ Include "includes\level.bb"
 Include "includes\menu.bb"
 
 ; Load HUD and Misc. Sprites
-;Include "includes\hud.bb"
+;Include "includes\hud.bb" - Comment out for now(No hud to display)
 
-;LoadMusic()		
+;LoadMusic() - Comment out(Slightly annoying, I really need a settings menu.)
 LoadSFX()
 
 MoveMouse screen_width/2, screen_height/2
@@ -92,7 +94,6 @@ While QUIT = False
 	cnt=1
 	For z=1.5 To -1.5 Step -3
 		For x=-1 To 1 Step 2
-;			PositionEntity PCar_Wheels[cnt],0,0,0
 ;			ResetEntity PCar_Wheels[cnt]
 			PositionEntity PCar_Wheels[cnt],x,-1,z
 			cnt=cnt+1
@@ -116,7 +117,7 @@ While QUIT = False
 	RenderWorld
 		
 ; 2D stuff here, HUD, text, stats.
-	Text 50,50,"Dr1ber Test"
+	Text 50,50,"Test Build"
 	Text 0,0,FPS()
 
 	Flip

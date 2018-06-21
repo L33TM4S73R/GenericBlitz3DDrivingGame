@@ -10,6 +10,7 @@ Function MENU()			; MENU
 	ShowEntity spr_start
 	ShowEntity spr_quit	
 	ShowEntity spr_credits
+;	ShowEntity spr_freecam
 	LeaveMenu=False 
 	
 	While Not KeyHit( escape_key )
@@ -34,6 +35,7 @@ Function MENU()			; MENU
 	HideEntity spr_start
 	HideEntity spr_quit	
 	HideEntity spr_credits
+;	HideEntity spr_freecam
 	LeaveMenu=False
 	ShowCredits=False
 		
@@ -43,8 +45,9 @@ Function MousePick()		; MOUSEPICK
 	currentpicked = CameraPick( Camera_PlayerCar_3rd, MouseX(), MouseY() )
 	If currentpicked>0 And MouseHit(1)
 		If currentpicked = spr_start Then LeaveMenu = True
-		If currentpicked = spr_quit Then QUIT=True
+		If currentpicked = spr_quit Then QUIT = True
 		If currentpicked = spr_credits Then ShowCredits = True
+;		If currentpicked = spr_freecam Then camera = freecam
 	EndIf
 	If currentpicked<>lastpicked
 		If lastpicked Then EntityAlpha lastpicked, 1	;UNDO fade when mouse leaves
