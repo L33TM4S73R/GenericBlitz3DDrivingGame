@@ -21,4 +21,4 @@ Cities
 
 This is a repo to house the code for a game I've been tossing around. Feel free to copy, fork, or contribute. Any comments/suggestions good and/or bad will greatly assist.
 
-Greatly inspired by the wonderful tutorials by JNoodle: http://jnoodle.com/Blitz3D/ and the samples included with Blitz3D
+Greatly inspired by the wonderful lessons by JNoodle: http://jnoodle.com/Blitz3D/ and the samples included with Blitz3D
